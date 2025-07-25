@@ -11,4 +11,5 @@ RUN curl -fsSL https://ollama.com/install.sh | sh
 EXPOSE 11434
 
 # Start Ollama (it will auto-pull on first request)
-CMD ["ollama", "serve"]
+CMD ["ollama", "serve", "--host", "0.0.0.0"]
+
