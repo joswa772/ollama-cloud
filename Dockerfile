@@ -1,7 +1,7 @@
 FROM ollama/ollama:latest
 
-# Expose the Ollama API port
+# Expose Ollama API port
 EXPOSE 11434
 
-# Start Ollama on public interface for Railway
+# ✅ Correct CMD to run the API
 CMD ["ollama", "serve", "--host", "0.0.0.0"]
