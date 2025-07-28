@@ -1,19 +1,11 @@
-FROM ollama/ollama
+# Use official Ollama base image
+FROM ollama/ollama:latest
 
-# Set working directory
-WORKDIR /app
+# Optional: Pull a model at build time (comment out if not needed)
+# RUN ollama pull llama3
 
-# Copy your files into the container
-COPY . /app
-
-# Make the script executable
-RUN chmod +x /app/start.sh
-
-# Expose Ollama's default port
+# Expose Ollama default port
 EXPOSE 11434
 
-# 🚨 KEY FIX: Override the default ENTRYPOINT
-ENTRYPOINT []
-
-# Run your startup script with sh
-CMD ["sh", "/app/start.sh"]
+# Start Ollama server publicly (very important!)
+CMD ["ollama", "serve", "--host", "0.0.0.0"]
