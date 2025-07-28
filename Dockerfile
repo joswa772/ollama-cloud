@@ -1,7 +1,15 @@
-FROM ollama/ollama:latest
+# Start from the Ollama base image
+FROM ollama/ollama
 
-# Expose Ollama API port
+# Copy your server code
+COPY . /app
+WORKDIR /app
+
+# Make sure start.sh is executable
+RUN chmod +x start.sh
+
+# Expose the default Ollama port
 EXPOSE 11434
 
-# ✅ Correct CMD to run the API
-CMD ["ollama", "serve", "--host", "0.0.0.0"]
+# Run Ollama and pull the model at runtime
+CMD ["/app/start.sh"]
