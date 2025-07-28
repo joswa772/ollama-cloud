@@ -8,5 +8,5 @@ FROM ollama/ollama:latest
 EXPOSE 11434
 
 # Start Ollama server and bind to public interface
-ollama serve --host 0.0.0.0
+CMD ["ollama", "serve", "--host", "0.0.0.0"]
 
