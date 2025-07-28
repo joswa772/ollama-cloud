@@ -1,15 +1,16 @@
-# Start from the Ollama base image
 FROM ollama/ollama
 
-# Copy your server code
-COPY . /app
+# Set working directory
 WORKDIR /app
 
-# Make sure start.sh is executable
-RUN chmod +x start.sh
+# Copy everything into the container
+COPY . /app
 
-# Expose the default Ollama port
+# Make sure start.sh is executable
+RUN chmod +x /app/start.sh
+
+# Expose Ollama's default port
 EXPOSE 11434
 
-# Run Ollama and pull the model at runtime
-CMD ["/app/start.sh"]
+# Run the startup script correctly
+CMD ["sh", "/app/start.sh"]
