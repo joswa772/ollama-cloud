@@ -1,12 +1,12 @@
-# Use Ollama base image
+# Use official Ollama image
 FROM ollama/ollama:latest
 
-# (Optional) Pull a model like llama3 during build
+# Optional: pre-pull the model (uncomment if needed)
 # RUN ollama pull llama3
 
-# Expose Ollama default port
+# Expose default Ollama port
 EXPOSE 11434
 
-# Start Ollama server and bind to public interface
-CMD ["ollama", "serve", "--host", "0.0.0.0"]
-
+# ENTRYPOINT as base command, CMD as args
+ENTRYPOINT ["ollama"]
+CMD ["serve", "--host", "0.0.0.0"]
