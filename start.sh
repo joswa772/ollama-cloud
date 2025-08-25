@@ -6,7 +6,7 @@ mkdir -p "$OLLAMA_HOME"
 chmod -R 777 "$OLLAMA_HOME"
 
 echo ">>> Starting Ollama server in background..."
-ollama serve &
+OLLAMA_HOST=0.0.0.0:11434 ollama serve &
 sleep 8
 
 echo ">>> Pulling llama3 model..."
@@ -17,4 +17,4 @@ ollama pull llama3 || {
 
 echo "✅ llama3 model pulled successfully."
 echo ">>> Restarting Ollama in foreground..."
-exec ollama serve
+exec env OLLAMA_HOST=0.0.0.0:11434 ollama serve
